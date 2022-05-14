@@ -1,0 +1,10 @@
+{
+  "baseUrl": "https://www.qrcode-monkey.com/",
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "results/junit-[hash].xml"
+  },
+  "video": true,
+  "videoCompression": 10,
+  "chromeWebSecurity": false
+}

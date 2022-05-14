@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+
+  cypress:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - ./results:/results
+      - ./cypress/screenshots:/cypress/screenshots
+      - ./cypress/videos:/cypress/videos

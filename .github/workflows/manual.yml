@@ -1,0 +1,24 @@
+name: Test
+on: workflow_dispatch
+jobs:
+  cypress-tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+          config: baseUrl=https://www.qrcode-monkey.com/
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: screenshots
+          path: cypress/screenshots/
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: videos
+          path: cypress/videos/

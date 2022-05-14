@@ -1,0 +1,21 @@
+{
+  "name": "qrcodemonkey-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "wait-on -t 30000 https://www.qrcode-monkey.com/ && npx cypress run",
+    "cypress": "npx cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olgaivolga/qrcodemonkey-test.git"
+  },
+  "devDependencies": {
+    "cypress": "^9.5.4",
+    "wait-on": "^6.0.1",
+    "@nuintun/qrcode": "^3.3.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
