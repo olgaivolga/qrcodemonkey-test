@@ -5,13 +5,11 @@ describe('API', () => {
     cy.visit('#url');
   })
 
-  it('request is correct', () => {
+  it('request data is correct', () => {
     // prepare to intercept a call to API
     cy.intercept('/qr/custom').as('custom');
-    // create a QR code
-    cy.generate_qr_code_for_url('http://example.com');
+    cy.generate_qr_code_in_ui('http://example.com');
     cy.wait(['@custom']).then((call) => {
-      // if request is successful
       expect(call.response.statusCode).to.equal(200)
       // verify request data
       let requestBody = JSON.parse(call.request.body)
@@ -24,10 +22,8 @@ describe('API', () => {
   it('response URL fromat is correct', () => {
     // prepare to intercept a call to API
     cy.intercept('/qr/custom').as('custom');
-    // create a QR code
-    cy.generate_qr_code_for_url('http://example.com');
+    cy.generate_qr_code_in_ui('http://example.com');
     cy.wait(['@custom']).then((call) => {
-      // if request is successful
       expect(call.response.statusCode).to.equal(200)
       // verify response format
       const imageUrl = call.response.body.imageUrl;
@@ -38,17 +34,15 @@ describe('API', () => {
     });
   })
 
-  it('resulting QR code data is correct', () => {
+  it('response QR code data is correct', () => {
     // prepare to intercept a call to API
     cy.intercept('/qr/custom').as('custom');
-    // create a QR code
-    cy.generate_qr_code_for_url('http://example.com');
+    cy.generate_qr_code_in_ui('http://example.com');
     cy.wait(['@custom']).then((call) => {
-      // if request is successful
       expect(call.response.statusCode).to.equal(200)
-      // verify QR code data
+      // decode QR code at imageUrl and verify the data is correct
       const imageUrl = call.response.body.imageUrl;
-      cy.decode_qr_code_from_path(imageUrl).then(function(url) {
+      cy.decode_qr_code(imageUrl).then(function(url) {
         expect(url).to.equal('http://example.com');
       })
     });
