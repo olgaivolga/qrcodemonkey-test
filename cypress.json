@@ -4,7 +4,10 @@
   "reporterOptions": {
     "mochaFile": "results/junit-[hash].xml"
   },
-  "video": true,
-  "videoCompression": 10,
-  "chromeWebSecurity": false
+  "video": false,
+  "chromeWebSecurity": false,
+  "ignoreTestFiles": [
+    "**/__snapshots__/*",
+    "**/__image_snapshots__/*"
+  ]
 }
