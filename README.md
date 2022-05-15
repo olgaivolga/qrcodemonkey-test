@@ -4,6 +4,7 @@ The case study emphasizes Cypress skills so for demonstration purposes everythin
 
 Test:
 - use web UI to generate QR codes
+
 Verify:
 - generated requests contain expected payload
 - resulting QR code contains expected information
