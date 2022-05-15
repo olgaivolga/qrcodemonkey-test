@@ -1,6 +1,6 @@
 describe('Test size option', () => {
   
-    const params = require('../../fixtures/test_data.json');
+    const params = require('../../fixtures/test_options.json');
   
     params.forEach((test) => {
   
@@ -19,19 +19,11 @@ describe('Test size option', () => {
         expect(callData.response.statusCode).to.equal(200)
       })
     
-      it(`QR code size in API call matches the value set in UI: ${test.size}`, () => {
+      it(`QR code size in API request matches the value set in UI: ${test.size}`, () => {
         const requestBody = JSON.parse(callData.request.body)
         expect(requestBody.size).to.equal(test.size)
       });
-  
-      it('URL fromat in API response is correct', () => {
-        const imageUrl = callData.response.body.imageUrl;
-        cy.check_url_format(imageUrl).then(function(format_is_valid){
-          expect(format_is_valid,'URL format must be valid: '+imageUrl)
-            .to.be.true;
-        })
-      })
-    
+      
     });
   
 })  

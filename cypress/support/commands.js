@@ -62,6 +62,24 @@ Cypress.Commands.add("generate_qr_code_url", (options) => {
     })
 })
 
+Cypress.Commands.add("generate_qr_code_text", (options) => {
+    // save current image src
+    cy.get(ui.QRCodePreview).then(function($img) {
+        cy.wrap($img.attr('src')).as('before')
+    })
+    // generate new QR code for URL
+    cy.get(ui.QRCodeText).click().clear().type(options.data);
+    cy.get(ui.CreateQRCode).click();
+    cy.get(ui.CreateQRCode).should('be.disabled');
+    // verify that image src has changed
+    cy.get('@before').then(function(before) {
+        cy.get(ui.QRCodePreview, {timeout: 5000}).should(function($img) {
+            const after = $img.attr('src');
+            expect(after).to.not.equal(before);
+        })
+    })
+})
+
 Cypress.Commands.add("generate_qr_code_logo", (options) => {
     // save current image src
     cy.get(ui.QRCodePreview).then(function($img) {

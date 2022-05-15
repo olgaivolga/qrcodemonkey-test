@@ -1,6 +1,6 @@
-describe('Test QR code data', () => {
+describe('Test QR code url', () => {
   
-  const params = require('../../fixtures/test_data.json');
+  const params = require('../../fixtures/test_url.json');
 
   params.forEach((test) => {
 
@@ -32,20 +32,20 @@ describe('Test QR code data', () => {
       })
     })
   
-    it('QR code data in API response is correct', () => {
+    it('imageUrl data is correct', () => {
       const imageUrl = callData.response.body.imageUrl;
       cy.decode_qr_code(imageUrl).then(function(url) {
         expect(url).to.equal(test.data);
       })
     })
   
-    it('QR code displayed on page data is correct', () => {
+    it('image data is correct', () => {
       cy.decode_qr_code().then(function(url) {
         expect(url).to.equal(test.data);
       })
     })
 
-    it('QR code image matches snapshot', () => {
+    it('image matches snapshot', () => {
       cy.compare_qr_code_image();
     })
 

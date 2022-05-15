@@ -1,6 +1,7 @@
 export default {
     CreateQRCode: "#button-create-qr-code",
     QRCodeUrl: "#qrcodeUrl",
+    QRCodeText: "#qrcodeText",
     QRCodeColorPane: "div[ng-class*='colors']",
     QRCodeBodyColor: "color-picker[ng-model='qrcode.config.bodyColor']",
     QRCodeBgColor: "color-picker[ng-model='qrcode.config.bgColor']",

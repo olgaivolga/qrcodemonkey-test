@@ -1,6 +1,6 @@
 describe('Test color options', () => {
   
-    const params = require('../../fixtures/test_data.json');
+    const params = require('../../fixtures/test_options.json');
   
     params.forEach((test) => {
   
@@ -19,7 +19,7 @@ describe('Test color options', () => {
         expect(callData.response.statusCode).to.equal(200)
       })
     
-      it(`QR code color options in API call match values set in UI`, () => {
+      it(`QR code color options in API request match values set in UI`, () => {
         // TBD: eye color options
         const requestBody = JSON.parse(callData.request.body)
         expect(requestBody.config.bodyColor).to.equal(test.config.bodyColor)
@@ -29,15 +29,7 @@ describe('Test color options', () => {
         expect(requestBody.config.gradientType).to.equal(test.config.gradientType)
         expect(requestBody.config.gradientOnEyes).to.equal(test.config.gradientOnEyes)
       });
-  
-      it('URL fromat in API response is correct', () => {
-        const imageUrl = callData.response.body.imageUrl;
-        cy.check_url_format(imageUrl).then(function(format_is_valid){
-          expect(format_is_valid,'URL format must be valid: '+imageUrl)
-            .to.be.true;
-        })
-      })
-    
+      
     });
   
 })  
