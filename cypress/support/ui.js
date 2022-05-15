@@ -14,5 +14,7 @@ export default {
     QRCodeLogoFacebookCircle: "i[class='sprite-logo sprite-logo-facebook-circle']",
     QRCodeSize: "span[class*='rz-pointer-min']",
     QRCodeText: "#qrcodeText",
-    QRCodePreview: ".card-img-top"
+    QRCodePreview: ".card-img-top",
+    QRCodeDataError: "small[class='error-text']",
+    QRCodeDataAlert: "div[class*='alert-danger']"
 }  

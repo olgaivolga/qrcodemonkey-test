@@ -155,3 +155,15 @@ Cypress.Commands.add("decode_qr_code", (url='') => {
 Cypress.Commands.add("compare_qr_code_image", () => {
     cy.get(ui.QRCodePreview).toMatchImageSnapshot();
 })
+
+Cypress.Commands.add("type_invalid_url", (url) => {
+    cy.intercept('/qr/custom', cy.spy().as('custom'));
+    cy.get(ui.QRCodeDataError).should('not.be','visible')
+    cy.get(ui.QRCodeUrl).click().clear().type(url);
+    cy.get(ui.CreateQRCode).click();
+    cy.get('@custom').should('not.have.been.called');
+    cy.get(ui.QRCodeDataError).should('be.visible')
+    cy.get(ui.QRCodeDataError).should('contain','Enter a valid URL')
+    cy.get(ui.QRCodeDataAlert).should('be.visible')
+    cy.get(ui.QRCodeDataAlert).should('contain','There are errors you have to fix before generating.')
+})
