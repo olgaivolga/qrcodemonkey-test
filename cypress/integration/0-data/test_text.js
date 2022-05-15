@@ -9,7 +9,7 @@ describe('Test QR code text', () => {
       it('Generate QR code', () => {
         cy.visit('#text');
         cy.intercept('/qr/custom').as('custom');
-        cy.generate_qr_code_text(test);
+        cy.generate_qr_code_in_ui(['text'],test);
         cy.wait(['@custom']).then((call) => {
           callData = call;
         })

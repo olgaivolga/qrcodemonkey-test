@@ -1,4 +1,5 @@
 import './commands'
+import './generate'
 import 'cypress-plugin-snapshots/commands';
 
 Cypress.on('uncaught:exception', (err, runnable) => {
