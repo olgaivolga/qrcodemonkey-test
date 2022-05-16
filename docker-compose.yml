@@ -6,6 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.test
+    command: npm test
     volumes:
       - ./results:/results
       - ./cypress/screenshots:/cypress/screenshots

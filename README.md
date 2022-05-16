@@ -11,6 +11,19 @@ Verify:
 - resulting QR code matches snapshot
 
 
+To run tests:
+```
+//install and start Docker and Docker Compose depending on the system
+
+docker-compose up --build
+```
+
+or:
+```
+npm install
+npm test
+```
+
 In a different situation splitting higher level tests into two suites can be suggested:
 
 1. QRCode Monkey API is available so we can create faster tests for QR code data and image that dont need a browser.
