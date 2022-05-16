@@ -9,7 +9,7 @@ describe('Test color options', () => {
     it('generate QR code', () => {
       cy.visit('#url');
       cy.intercept('/qr/custom').as('custom');
-      cy.generate_qr_code_in_ui(['color'],test);
+      cy.generate_qr_code_in_ui(test,['color']);
       cy.wait(['@custom']).then((call) => {
         callData = call;
       })

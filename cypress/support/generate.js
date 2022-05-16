@@ -64,30 +64,26 @@ function fill_size_options(options) {
         .should('have.attr', 'aria-valuenow', targetValue)
 }
 
-Cypress.Commands.add("generate_qr_code_in_ui", (mode=['url'],options) => {
+Cypress.Commands.add("generate_qr_code_in_ui", (options,mode=['url']) => {
     // save current image src
     cy.get(ui.QRCodePreview).then(function($img) {
         cy.wrap($img.attr('src')).as('before')
     })
     // generate new QR code 
-    switch (true) {
-        case mode.includes('url'):
-            fill_url_option(options);
-            break;
-        case mode.includes('text'):
-            fill_text_option(options);
-            break;
-        case mode.includes('color'):
-            fill_color_options(options);
-            break;
-        case mode.includes('logo'):
-            fill_logo_options(options);
-            break;
-        case mode.includes('size'):
-            fill_size_options(options);
-            break;
-        default:
-            cy.log('unknown mode');
+    if (mode.includes('url')) {
+        fill_url_option(options);
+    }
+    if (mode.includes('text')) {
+        fill_text_option(options);
+    }
+    if (mode.includes('color')) {
+        fill_color_options(options);
+    }
+    if (mode.includes('logo')) {
+        fill_logo_options(options);
+    }
+    if (mode.includes('size')) {
+        fill_size_options(options);
     }
     cy.get(ui.CreateQRCode).click();
     cy.get(ui.CreateQRCode).should('be.disabled');

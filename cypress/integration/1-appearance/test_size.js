@@ -9,7 +9,7 @@ describe('Test size option', () => {
     it('generate QR code', () => {
       cy.visit('#url');
       cy.intercept('/qr/custom').as('custom');
-      cy.generate_qr_code_in_ui(['size'],test);
+      cy.generate_qr_code_in_ui(test,['size']);
       cy.wait(['@custom']).then((call) => {
         callData = call;
       })
